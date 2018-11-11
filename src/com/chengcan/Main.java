@@ -22,7 +22,6 @@ public class Main {
         List<FileInfo> fileInfos = Parser.parse(initFile, aimFile);
 
         //导出文件结果到html
-//        HtmlExport.export(new File("result.html"), new File("exprotResult.html"), fileInfos);
         HtmlExport.export(is, new File("exportResult.html"), fileInfos);
 
     }
