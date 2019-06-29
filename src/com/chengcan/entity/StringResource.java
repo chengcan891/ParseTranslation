@@ -7,6 +7,8 @@ import java.util.Objects;
 public class StringResource {
     private String name;
     private String value;
+    private boolean isOtherString;//值是@string/xxx
+
     private List<String> regs;
 
     public List<String> getRegs() {
@@ -37,6 +39,15 @@ public class StringResource {
         this.value = value;
     }
 
+
+    public boolean isOtherString() {
+        return isOtherString;
+    }
+
+    public void setOtherString(boolean otherString) {
+        isOtherString = otherString;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,6 +57,19 @@ public class StringResource {
         if (!Objects.equals(name, resource.name)) {
             return false;
         }
+
+        if (isOtherString) {
+            if (resource.isOtherString) {
+                return Objects.equals(value, resource.value);
+            } else {
+                return false;
+            }
+        } else {
+            if (resource.isOtherString) {
+                return false;
+            }
+        }
+
 
         if (regs.size() != resource.regs.size()) {
             return false;

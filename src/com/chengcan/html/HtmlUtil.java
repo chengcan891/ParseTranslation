@@ -45,11 +45,23 @@ public class HtmlUtil {
                     case StringResourceConstant.STATUS_OK:
                         break;
                     case StringResourceConstant.STATUS_NOT_MATCHED:
-                        sb.append(String.format(fileInfoText, j + 1,
-                                stringResults.get(j).getOriginal().getName(),
-                                "资源不匹配",
-                                stringResults.get(j).getOriginal().getRegs(),
-                                stringResults.get(j).getAim().getRegs()));
+
+                        if (stringResults.get(j).getOriginal().isOtherString() || stringResults.get(j).getAim().isOtherString()) {
+
+                            sb.append(String.format(fileInfoText, j + 1,
+                                    stringResults.get(j).getOriginal().getName(),
+                                    "资源不匹配",
+                                    stringResults.get(j).getOriginal().getValue(),
+                                    stringResults.get(j).getAim().getValue()));
+                        } else {
+                            sb.append(String.format(fileInfoText, j + 1,
+                                    stringResults.get(j).getOriginal().getName(),
+                                    "资源不匹配",
+                                    stringResults.get(j).getOriginal().getRegs(),
+                                    stringResults.get(j).getAim().getRegs()));
+                        }
+
+
                         break;
                     case StringResourceConstant.STATUS_NOT_FIND:
                         sb.append(String.format(fileInfoText, j + 1,

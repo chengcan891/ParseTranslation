@@ -56,9 +56,20 @@ public class SAXParseHandler extends DefaultHandler {
         if (qName.equals("string")) {
             resource.setValue(value);
             resource.setRegs(parse(value));
+            resource.setOtherString(isOtherString(value));
             resourceList.add(resource);
         }
 
+    }
+
+    /**
+     * 是@string/xxxx
+     *
+     * @param text
+     * @return
+     */
+    private boolean isOtherString(String text) {
+        return text != null && text.startsWith("@string/");
     }
 
     private List<String> parse(String text) {
